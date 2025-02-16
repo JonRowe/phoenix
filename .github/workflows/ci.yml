@@ -21,7 +21,7 @@ jobs:
             lint: true
             installer: true
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -79,10 +79,10 @@ jobs:
           restore-keys: |
             deps-${{ runner.os }}-npm
 
-      - name: Set up Node.js 20.x
+      - name: Set up Node.js .x
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: .x
 
       - name: Restore npm cache
         uses: actions/cache@v4
@@ -107,11 +107,11 @@ jobs:
           # look for correct alpine image here: https://hub.docker.com/r/hexpm/elixir/tags
           - elixir: 1.15.8
             otp: 24.3.4.17
-            suffix: "alpine-3.20.3"
+            suffix: "alpine-3..3"
 
           - elixir: 1.17.3
             otp: 27.1.2
-            suffix: "alpine-3.20.3"
+            suffix: "alpine-3..3"
 
     container:
       image: hexpm/elixir:${{ matrix.elixir }}-erlang-${{ matrix.otp }}-${{ matrix.suffix }}
@@ -131,7 +131,7 @@ jobs:
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       mssql:
-        image: mcr.microsoft.com/mssql/server:2019-latest
+        image: mcr.microsoft.com/mssql/server:19-latest
         env:
           ACCEPT_EULA: Y
           SA_PASSWORD: some!Password
